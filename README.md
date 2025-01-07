@@ -4,3 +4,4 @@
 
 Links:
 - https://docs.sqlalchemy.org/en/20/core/
+- https://alembic.sqlalchemy.org/en/latest/cookbook.html
