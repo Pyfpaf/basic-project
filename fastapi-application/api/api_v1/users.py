@@ -9,7 +9,7 @@ from core.schemas.user import (
     UserRead,
     UserCreate,
 )
-from crud.users import get_all_users
+from crud import users as users_crud
 
 router = APIRouter(tags=["Users"])
 
@@ -22,8 +22,23 @@ async def get_users(
         # 2 способ создания аннотации, более современный
         session: Annotated[
             AsyncSession,
-            Depends(db_helper.session_getter)
+            Depends(db_helper.session_getter),
         ],
 ):
-    users = await get_all_users(session=session)
+    users = await users_crud.get_all_users(session=session)
     return users
+
+
+@router.post("", response_model=UserRead)
+async def create_user(
+        session: Annotated[
+            AsyncSession,
+            Depends(db_helper.session_getter),
+        ],
+        user_create: UserCreate,
+):
+    user = await users_crud.create_user(
+        session=session,
+        user_create=user_create
+    )
+    return user
