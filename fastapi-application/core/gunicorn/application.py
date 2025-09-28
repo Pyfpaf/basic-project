@@ -1,6 +1,5 @@
 from fastapi import FastAPI
 from gunicorn.app.base import BaseApplication
-from sqlalchemy import values
 
 
 class Application(BaseApplication):
@@ -19,7 +18,7 @@ class Application(BaseApplication):
     @property
     def config_options(self) -> dict:
         return {
-            key: values
+            key: value
             for key, value in self.options.items()
             if key in self.cfg.settings and value is not None
         }
