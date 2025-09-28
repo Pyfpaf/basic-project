@@ -1,16 +1,13 @@
-[tool.poetry]
-package-mode = false
-
-[tool.poetry.dependencies]
-python = "^3.12"
-fastapi = "^0.115.6"
-uvicorn = {extras = ["standard"], version = "^0.32.1"}
-pydantic = {extras = ["email"], version = "^2.10.3"}
-pydantic-settings = "^2.6.1"
-sqlalchemy = {extras = ["asyncio"], version = "^2.0.36"}
-asyncpg = "^0.30.0"
-alembic = "^1.14.0"
-
-[tool.poetry.group.dev.dependencies]
-black = "^24.10.0"
-
+[project]
+name = "basic-application"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.12"
+dependencies = [
+    "alembic>=1.16.5",
+    "asyncpg>=0.30.0",
+    "fastapi>=0.117.1",
+    "pydantic-settings>=2.11.0",
+    "sqlalchemy[asyncio]>=2.0.43",
+    "uvicorn>=0.37.0",
+]
