@@ -4,8 +4,15 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class RunConfig(BaseModel):
-    host: str = '0.0.0.0'
+    host: str = "0.0.0.0"
     port: int = 8000
+
+
+class GunicornConfig(BaseModel):
+    host: str = "0.0.0.0"
+    port: int = 8000
+    workers: int = 1
+    timeout: int = 900
 
 
 class ApiV1Prefix(BaseModel):
@@ -43,6 +50,7 @@ class Settings(BaseSettings):
         extra="ignore",
     )
     run: RunConfig = RunConfig()
+    gunicorn: GunicornConfig = GunicornConfig()
     api: ApiPrefix = ApiPrefix()
     db: DatabaseConfig
 
